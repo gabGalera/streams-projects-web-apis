@@ -1,14 +1,38 @@
 import ComponentsBuilder from "./componentsBuilder.js";
+let components;
+
+function addMessageOnTop(msg) {
+  const table = components.table;
+  const { content } = table.items.shift();
+  const items = table.items.map((item) => item.content);
+  table.clearItems();
+
+  table.addItem(content);
+
+  table.addItem(msg);
+
+  items.forEach((item) => {
+    table.addItem(item);
+  });
+
+  components.screen.render();
+}
+
+function log(msg) {
+  addMessageOnTop(msg);
+}
 
 function renderUi() {
-  const components = new ComponentsBuilder()
+  components = new ComponentsBuilder()
     .setScreen({
       title: "Mastering Node.js Streams",
     })
     .setLayoutComponent()
     .setFormComponent({
-      onStart: () => console.log("started!"),
-      onCancel: () => console.log("stopped!"),
+      onStart: () => {
+        addMessageOnTop("Hey!!" + Date.now());
+      },
+      onCancel: () => {},
     })
     .setDataTableComponent()
     .build();
@@ -16,4 +40,4 @@ function renderUi() {
   components.screen.render();
 }
 
-export { renderUi };
+export { renderUi, log };

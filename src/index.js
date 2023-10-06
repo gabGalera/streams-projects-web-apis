@@ -1,3 +1,3 @@
-import { renderUi } from "./ui.js";
+import { renderUi, log } from "./ui.js";
 
 renderUi();
