@@ -4,6 +4,7 @@ export default class ComponentsBuilder {
   screen;
   layout;
   form;
+  table;
   setScreen({ title }) {
     this.screen = blessed.screen({
       smartCSR: true,
@@ -82,10 +83,31 @@ export default class ComponentsBuilder {
 
     return this;
   }
+  setDataTableComponent() {
+    this.table = blessed.list({
+      border: "line",
+      mouse: true,
+      keys: true,
+      top: 0,
+      scrollbar: {
+        ch: "",
+        inverse: true,
+      },
+      tags: true,
+      parent: this.layout,
+      align: "center",
+      width: "100%",
+      height: "70%",
+      items: ["{bold}Data{/}"],
+    });
+
+    return this;
+  }
   build() {
     return {
       screen: this.screen,
       form: this.form,
+      table: this.table,
     };
   }
 }

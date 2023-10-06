@@ -10,6 +10,7 @@ function renderUi() {
       onStart: () => console.log("started!"),
       onCancel: () => console.log("stopped!"),
     })
+    .setDataTableComponent()
     .build();
 
   components.screen.render();
