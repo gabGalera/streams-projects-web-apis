@@ -22,7 +22,7 @@ export default class ComponentsBuilder {
 
     return this;
   }
-  setFormComponent({ onStart, onEnd }) {
+  setFormComponent({ onStart, onCancel }) {
     const form = blessed.form({
       parent: this.screen,
       keys: true,
@@ -51,7 +51,35 @@ export default class ComponentsBuilder {
         },
       },
     });
+
+    const stop = blessed.button({
+      parent: form,
+      mouse: true,
+      keys: true,
+      shrink: true,
+      padding: {
+        left: 1,
+        right: 1,
+      },
+      left: "70%",
+      name: "cancel",
+      content: "cancel",
+      style: {
+        bg: "white",
+        focus: {
+          bg: "red",
+        },
+        hover: {
+          bg: "red",
+        },
+      },
+    });
+
+    start.on("press", onStart);
+    stop.on("press", onCancel);
+
     this.form = form;
+
     return this;
   }
   build() {

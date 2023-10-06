@@ -8,7 +8,7 @@ function renderUi() {
     .setLayoutComponent()
     .setFormComponent({
       onStart: () => console.log("started!"),
-      onStop: () => console.log("stopped!"),
+      onCancel: () => console.log("stopped!"),
     })
     .build();
 
