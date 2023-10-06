@@ -46,12 +46,18 @@ export default class ComponentsBuilder {
         focus: {
           bg: "green",
         },
+        hover: {
+          bg: "green",
+        },
       },
     });
+    this.form = form;
+    return this;
   }
   build() {
     return {
       screen: this.screen,
+      form: this.form,
     };
   }
 }

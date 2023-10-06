@@ -6,6 +6,10 @@ function renderUi() {
       title: "Mastering Node.js Streams",
     })
     .setLayoutComponent()
+    .setFormComponent({
+      onStart: () => console.log("started!"),
+      onStop: () => console.log("stopped!"),
+    })
     .build();
 
   components.screen.render();
